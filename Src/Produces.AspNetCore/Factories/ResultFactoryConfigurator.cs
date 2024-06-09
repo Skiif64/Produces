@@ -1,9 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
 using Produces.AspNetCore.Factories.Constructors;
 using Produces.Core.Abstractions;
 
 namespace Produces.AspNetCore.Factories;
 
-public class ResultFactoryOptions
+public class ResultFactoryConfigurator
 {
     private readonly Dictionary<Type, Type> _constructors = new();
 
@@ -20,4 +21,12 @@ public class ResultFactoryOptions
         where TFor : IProduce
         where TConstructor : IResultConstructor
         => Register<TFor>(typeof(TConstructor));
+
+    internal void RegisterConstructors(IServiceCollection services)
+    {
+        foreach (var constructor in _constructors.Values)
+        {
+            services.AddSingleton(constructor);
+        }
+    }
 }
