@@ -4,6 +4,12 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>Produces.Core</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Skiif64</Authors>
+        <PackageDescription>Simple implementation of Result pattern</PackageDescription>
+        <RepositoryUrl>https://github.com/Skiif64/Produces</RepositoryUrl>
+        <PackageTags>Result; Error;</PackageTags>
     </PropertyGroup>
 
 </Project>

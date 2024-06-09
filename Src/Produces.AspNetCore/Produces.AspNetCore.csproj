@@ -1,9 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>Produces.AspNetCore</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Skiif64</Authors>
+        <PackageDescription>This package adds a dancing Octocat!</PackageDescription>
+        <RepositoryUrl>https://github.com/Skiif64/Produces</RepositoryUrl>
+        <PackageTags>Result; Error;</PackageTags>
     </PropertyGroup>
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
