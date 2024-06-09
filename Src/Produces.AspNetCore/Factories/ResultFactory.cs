@@ -8,12 +8,12 @@ namespace Produces.AspNetCore.Factories;
 
 internal sealed class ResultFactory : IResultFactory
 {
-    private readonly ResultFactoryOptions _options;
+    private readonly ResultFactoryConfigurator _configurator;
     private readonly IServiceProvider _provider;
 
-    public ResultFactory(IOptions<ResultFactoryOptions> options, IServiceProvider provider)
+    public ResultFactory(ResultFactoryConfigurator configurator, IServiceProvider provider)
     {
-        _options = options.Value;
+        _configurator = configurator;
         _provider = provider;
     }
 
@@ -30,7 +30,7 @@ internal sealed class ResultFactory : IResultFactory
 
     private IResult CreateNonGeneric(Type type, IProduce result, HttpContext context)
     {
-        if (!_options.Constructors.TryGetValue(type, out var constructorType))
+        if (!_configurator.Constructors.TryGetValue(type, out var constructorType))
             throw new InvalidOperationException($"Constructor for {type} is not found");
         var constructor = (IResultConstructor)_provider.GetRequiredService(constructorType);
         return constructor.Construct(result, context);
@@ -38,7 +38,7 @@ internal sealed class ResultFactory : IResultFactory
     
     private IResult CreateGeneric(Type openType, Type genericType, IProduce result, HttpContext context)
     {
-        if (!_options.Constructors.TryGetValue(openType, out var constructorType))
+        if (!_configurator.Constructors.TryGetValue(openType, out var constructorType))
             throw new InvalidOperationException($"Constructor for {openType.MakeGenericType(genericType)} is not found");
         var constructor = (IResultConstructor)_provider.GetRequiredService(constructorType.MakeGenericType(genericType));
         return constructor.Construct(result, context);
