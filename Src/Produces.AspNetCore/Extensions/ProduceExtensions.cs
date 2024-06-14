@@ -7,7 +7,8 @@ namespace Produces.AspNetCore.Extensions;
 
 public static class ProduceExtensions
 {
-    public static IResult ToHttpResult(this IProduce produce, HttpContext context)
+    public static IResult ToHttpResult<TProduce>(this TProduce produce, HttpContext context)
+        where TProduce : IProduce
     {
         ArgumentNullException.ThrowIfNull(produce, nameof(produce));
         var factory = context.RequestServices.GetRequiredService<IResultFactory>();

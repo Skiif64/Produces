@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>Produces.AspNetCore</PackageId>
-        <Version>1.2.0</Version>
+        <Version>1.2.1</Version>
         <Authors>Skiif64</Authors>
         <PackageDescription>Simple implementation of Result pattern. This package is adapter for Asp Net Core</PackageDescription>
         <RepositoryUrl>https://github.com/Skiif64/Produces</RepositoryUrl>
@@ -16,5 +16,10 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Produces.Core\Produces.Core.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="..\..\README.md">
+        <Link>README.md</Link>
+      </Content>
     </ItemGroup>
 </Project>
