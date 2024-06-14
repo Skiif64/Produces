@@ -11,5 +11,9 @@
         <RepositoryUrl>https://github.com/Skiif64/Produces</RepositoryUrl>
         <PackageTags>Result; Error;</PackageTags>
     </PropertyGroup>
-
+    <ItemGroup>
+        <Content Include="..\..\README.md">
+            <Link>README.md</Link>
+        </Content>
+    </ItemGroup>
 </Project>
