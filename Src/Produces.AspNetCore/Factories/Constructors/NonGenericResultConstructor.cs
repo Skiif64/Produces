@@ -35,6 +35,7 @@ internal sealed class NonGenericResultConstructor : IResultConstructor
         ErrorType.NotFound => HttpStatusCode.NotFound,
         ErrorType.AccessDenied => HttpStatusCode.Forbidden,
         ErrorType.Conflict => HttpStatusCode.Conflict,
+        ErrorType.Unexpected => HttpStatusCode.InternalServerError,
         _ => HttpStatusCode.InternalServerError
     };
 }

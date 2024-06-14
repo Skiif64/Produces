@@ -36,6 +36,7 @@ internal sealed class GenericResultConstructor<TValue> : BaseResultConstructor<T
         ErrorType.NotFound => HttpStatusCode.NotFound,
         ErrorType.AccessDenied => HttpStatusCode.Forbidden,
         ErrorType.Conflict => HttpStatusCode.Conflict,
+        ErrorType.Unexpected => HttpStatusCode.InternalServerError,
         _ => HttpStatusCode.InternalServerError
     };
 }

@@ -5,5 +5,6 @@ public enum ErrorType
     Problem,
     AccessDenied,
     NotFound,
-    Conflict
+    Conflict,
+    Unexpected,
 }

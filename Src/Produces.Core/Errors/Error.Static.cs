@@ -37,6 +37,12 @@ public readonly partial struct Error
             ["failures"] = failures
         });
     
+    public static Error Unexpected(string type, string title, string? details = null, object? extensions = null)
+        => new (ErrorType.Unexpected, type, title, details, ToDictionary(extensions));
+
+    public static Error Unexpected() 
+        => new(ErrorType.Unexpected, NoAdditionalSemanticUrl, null, null, null);
+    
     
     private static IDictionary<string,object?>? ToDictionary(object? extensions)
         => extensions?.GetType()
