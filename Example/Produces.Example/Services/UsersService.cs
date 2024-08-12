@@ -34,7 +34,8 @@ public static class UsersService
             return Produce
                 .Failure<User>(Error.Problem("about:blank",
                     "Login failed",
-                    "Email or password invalid"));
+                    "Email or password invalid",
+                    null));
         }
 
         return Produce.Success(user);
