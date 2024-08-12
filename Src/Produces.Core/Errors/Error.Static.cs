@@ -31,10 +31,10 @@ public readonly partial struct Error
     public static Error AccessDenied()
         => new (ErrorType.AccessDenied, NoAdditionalSemanticUrl, null, null, null);
 
-    public static Error Validation(string type, IEnumerable<ValidationFailure> failures)
+    public static Error Validation(string type, IEnumerable<ValidationFailure> errors)
         => new (ErrorType.Problem, type, ValidationErrorTitle, null, new Dictionary<string, object?>()
         {
-            ["failures"] = failures
+            ["errors"] = errors
         });
     
     public static Error Unexpected(string type, string title, string? details = null, object? extensions = null)
