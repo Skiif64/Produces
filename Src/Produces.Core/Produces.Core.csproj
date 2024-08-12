@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>Produces.Core</PackageId>
-        <Version>1.1.1</Version>
+        <Version>1.2.1</Version>
         <Authors>Skiif64</Authors>
         <PackageDescription>Simple implementation of Result pattern</PackageDescription>
         <RepositoryUrl>https://github.com/Skiif64/Produces</RepositoryUrl>
