@@ -17,7 +17,8 @@ internal sealed class ResultFactory : IResultFactory
         _provider = provider;
     }
 
-    public IResult Create(IProduce result, HttpContext context)
+    public IResult Create<TProduce>(TProduce result, HttpContext context)
+        where TProduce : IProduce
     {
         var type = result.GetType();
         if (type.IsGenericType)
@@ -28,19 +29,21 @@ internal sealed class ResultFactory : IResultFactory
         return CreateNonGeneric(type, result, context);
     }
 
-    private IResult CreateNonGeneric(Type type, IProduce result, HttpContext context)
+    private IResult CreateNonGeneric<TProduce>(Type type, TProduce result, HttpContext context)
+        where TProduce : IProduce
     {
         if (!_configurator.Constructors.TryGetValue(type, out var constructorType))
             throw new InvalidOperationException($"Constructor for {type} is not found");
-        var constructor = (IResultConstructor)_provider.GetRequiredService(constructorType);
+        var constructor = (IResultConstructor<TProduce>)_provider.GetRequiredService(constructorType);
         return constructor.Construct(result, context);
     }
     
-    private IResult CreateGeneric(Type openType, Type genericType, IProduce result, HttpContext context)
+    private IResult CreateGeneric<TProduce>(Type openType, Type genericType, TProduce result, HttpContext context)
+        where TProduce : IProduce
     {
         if (!_configurator.Constructors.TryGetValue(openType, out var constructorType))
             throw new InvalidOperationException($"Constructor for {openType.MakeGenericType(genericType)} is not found");
-        var constructor = (IResultConstructor)_provider.GetRequiredService(constructorType.MakeGenericType(genericType));
+        var constructor = (IResultConstructor<TProduce>)_provider.GetRequiredService(constructorType.MakeGenericType(genericType));
         return constructor.Construct(result, context);
     }
 }

@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Http;
 using Produces.AspNetCore.Utils;
+using Produces.Core;
 using Produces.Core.Abstractions;
 
 namespace Produces.AspNetCore.Factories.Constructors;
 
-internal sealed class NonGenericResultConstructor : IResultConstructor
+internal sealed class NonGenericResultConstructor : IResultConstructor<Produce>
 {
-    public IResult Construct(IProduce result, HttpContext context)
+    public IResult Construct(Produce result, HttpContext context)
     {
         if (!result.Failed)
             return SuccessResult();
@@ -14,4 +15,5 @@ internal sealed class NonGenericResultConstructor : IResultConstructor
     }
     
     private static IResult SuccessResult() => Results.NoContent();
+    
 }
