@@ -5,5 +5,6 @@ namespace Produces.AspNetCore.Factories;
 
 public interface IResultFactory
 {
-    IResult Create(IProduce result, HttpContext context);
+    IResult Create<TProduce>(TProduce result, HttpContext context)
+        where TProduce : IProduce;
 }

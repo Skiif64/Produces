@@ -6,7 +6,7 @@ namespace Produces.Core.Errors;
 public readonly partial struct Error
 {
     public ErrorType ErrorType { get; }
-    public string Type { get; }
+    public string? Type { get; }
     public string? Title { get; }
     public string? Detail { get; }
     public IDictionary<string, object?>? Extensions { get; }
@@ -25,9 +25,8 @@ public readonly partial struct Error
     /// <param name="title">Title of error</param>
     /// <param name="detail">Detail of error</param>
     /// <param name="extensions">Custom parameters</param>
-    private Error(ErrorType errorType, string type, string? title, string? detail, IDictionary<string, object?>? extensions)
+    private Error(ErrorType errorType, string? type, string? title, string? detail, IDictionary<string, object?>? extensions)
     {
-        ArgumentNullException.ThrowIfNull(type, nameof(type));
         ErrorType = errorType;
         Type = type;
         Title = title;

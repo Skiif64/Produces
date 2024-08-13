@@ -19,7 +19,7 @@ public class ResultFactoryConfigurator
 
     public void Register<TFor, TConstructor>()
         where TFor : IProduce
-        where TConstructor : IResultConstructor
+        where TConstructor : IResultConstructor<TFor>
         => Register<TFor>(typeof(TConstructor));
 
     internal void RegisterConstructors(IServiceCollection services)

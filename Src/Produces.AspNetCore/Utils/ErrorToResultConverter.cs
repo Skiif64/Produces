@@ -6,11 +6,12 @@ namespace Produces.AspNetCore.Utils;
 
 internal static class ErrorToResultConverter
 {
+    private const string DefaultType = "about:blank";
     public static IResult ToErrorResult(Error error, HttpContext context)
     {
         var statusCode = GetStatusCode(error.ErrorType);
         return Results.Problem(
-            type: error.Type,
+            type: error.Type ?? DefaultType,
             title: error.Title ?? statusCode.ToString(),
             detail: error.Detail,
             instance: context.Request.Path,

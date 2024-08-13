@@ -3,12 +3,8 @@ using Produces.Core.Abstractions;
 
 namespace Produces.AspNetCore.Factories.Constructors;
 
-public interface IResultConstructor
+public interface IResultConstructor<in TProduce>
+    where TProduce : IProduce
 {
-    IResult Construct(IProduce result, HttpContext context);
-}
-
-public interface IResultConstructor<in TValue>: IResultConstructor
-{
-    IResult Construct(IProduce<TValue> result, HttpContext context);
+    IResult Construct(TProduce result, HttpContext context);
 }
