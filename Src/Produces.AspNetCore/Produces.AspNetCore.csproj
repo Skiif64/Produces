@@ -13,6 +13,9 @@
         <PackageTags>Result; Error;</PackageTags>
     </PropertyGroup>
     <ItemGroup>
+        <InternalsVisibleTo Include="Produces.AspNetCore.UnitTests"/>
+    </ItemGroup>
+    <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     <ItemGroup>
